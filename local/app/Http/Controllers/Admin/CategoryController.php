@@ -24,8 +24,7 @@ class CategoryController extends Controller
        public function add(){ 
              
              $category = DB::table('categorys')->get();  
-             return view('admin/add_category')->with('categories',$category)->with('title','Category')->with('subtitle','Add');
-		
+             return view('admin/add_category')->with('categories',$category)->with('title','Category')->with('subtitle','Add');	
 	}
         public function store(Request $request){
 	
