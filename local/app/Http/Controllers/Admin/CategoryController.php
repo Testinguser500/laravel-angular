@@ -38,7 +38,7 @@ class CategoryController extends Controller
         ]);
          
         if ($validator->fails()) {
-            return redirect('/category/add')
+            return redirect('/admin/category/add')
                         ->withErrors($validator)
                         ->withInput();
         }
@@ -70,25 +70,33 @@ class CategoryController extends Controller
          public function update(Request $request){
 	
 	  $validator = Validator::make($request->all(), [
-            'name' => 'required',
-	    
-            'description'=>'required',            
+            'name' => 'required',	    
+            'description'=>'required',        
             
         ]);
          
         if ($validator->fails()) {
-            return redirect('/category')
+            return redirect('/admin/category/edit/'.$request->get('category_id'))
                         ->withErrors($validator)
                         ->withInput();
         }
-		 
+	 if(Input::file('image')!=''){	 
          $destinationPath = 'uploads'; // upload path
          $extension = Input::file('image')->getClientOriginalExtension(); // getting image extension
          $fileName = rand(11111,99999).'.'.$extension; // renameing image
          Input::file('image')->move($destinationPath, $fileName); // uploading file to given path
-	 Category::create(['image' =>$fileName,'category_name' =>$request->get('name'),'description' =>$request->get('description'),'status' =>$request->get('status'),'parent_id'=>$request->get('parent_cat'),'user_id'=>Auth::user()->id]);  
+         }
+         $cat = Category::find($request->get('category_id'));
+         $cat->category_name = $request->get('name');
+         if((isset($fileName)) && ($fileName!='')){
+	 $cat->image = $fileName;
+         }
+	 $cat->description =$request->get('description');
+	 $cat->parent_id=$request->get('parent_cat');
+         $cat->status=$request->get('status');
+         $cat->save(); 
 		  
-         return redirect('/admin/category')->withFlash_message('Record inserted Successfully.');
+         return redirect('/admin/category')->withFlash_message('Record updated Successfully.');
 	     
 	}
        
