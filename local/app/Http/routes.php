@@ -32,3 +32,7 @@ Route::post('admin/category/store', 'Admin\CategoryController@store');
 Route::post('admin/category/delete', 'Admin\CategoryController@delete');
 Route::get('admin/category/edit/{id}', 'Admin\CategoryController@edit');
 Route::post('admin/category/update', 'Admin\CategoryController@update');
+
+Route::get('admin/user', 'Admin\UserController@index');
+Route::get('admin/user/add', 'Admin\UserController@add');
+Route::post('admin/user/store', 'Admin\UserController@store');
