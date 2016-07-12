@@ -10,6 +10,7 @@
           <div class="box">
             <div class="box-header">
               <h3 class="box-title"><i class="fa fa-list"></i> Category List</h3>
+              <div class="pull-right"> <a href="{{ url('admin/category/add')}}" class="btn btn-primary"><i class="fa fa-plus"></i>Add</a></div>
             </div>
             <!-- /.box-header -->
             
@@ -29,7 +30,7 @@
                   <td>{{ $val->id }}</td>
                   <td>{{ $val->category_name }}</td>
                   <td>{{ $val->status }}</td>
-                  <td><i class="fa fa-edit" style="cursor:pointer" data-toggle="modal" data-target="#edit_modal{{ $val->id }};  ?>"></i> <i class="fa fa-trash" style="cursor:pointer" data-toggle="modal" data-target="#del_modal{{ $val->id }}"></i>
+                  <td><a href="{{url('/admin/category/edit') }}/{{ $val->id }}"><i class="fa fa-edit" ></a></i> <i class="fa fa-trash" style="cursor:pointer" data-toggle="modal" data-target="#del_modal{{ $val->id }}"></i>
                  
                   <!-- Modal -->
                     <div class="modal fade" id="del_modal{{  $val->id  }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
