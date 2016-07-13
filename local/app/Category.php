@@ -2,9 +2,9 @@
 
 namespace App;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
-class Category extends Authenticatable
+class Category extends Model
 {
     protected $table = 'categorys';
     /**

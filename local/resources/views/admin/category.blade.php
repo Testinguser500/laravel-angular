@@ -4,7 +4,13 @@
     <!-- Main content -->
     <section class="content">
        <div class="col-md-12">
-	     
+	@if(Session::has('flash_message'))
+        <div class="alert alert-success">
+            <p >
+            {{ Session::get('flash_message') }}
+            </p>
+        </div>
+       @endif   
           <!-- /.box -->
             @if(count($categories)>0)
           <div class="box">

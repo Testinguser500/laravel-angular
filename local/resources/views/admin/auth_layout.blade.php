@@ -43,8 +43,11 @@
         </div>
      @endif
      @if(Session::has('flash_message'))
-		   <p style="color:#00CC99; font-size:16px;font-weight:bold;">
-		   {{ Session::get('flash_message') }}</p>
+         <div class="alert alert-success">
+            <p >
+		   {{ Session::get('flash_message') }}
+            </p>
+         </div>
     @endif  
   <!-- /.login-logo -->
    @yield('content')
