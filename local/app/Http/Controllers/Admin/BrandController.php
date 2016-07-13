@@ -17,7 +17,7 @@ class BrandController extends Controller
 
         }
 	public function index(){ 
-             $brands = DB::table('brands')->get();  
+             $brands = DB::table('brands')->where('is_delete', '=','0')->get();  
              return view('admin/brand')->with('brands',$brands)->with('title','Brands')->with('subtitle','List');
 		
 	}
@@ -46,15 +46,17 @@ class BrandController extends Controller
          $extension = Input::file('image')->getClientOriginalExtension(); // getting image extension
          $fileName = rand(11111,99999).'.'.$extension; // renameing image
          Input::file('image')->move($destinationPath, $fileName); // uploading file to given path
-	 Brand::create(['image' =>$fileName,'brand_name' =>$request->get('name'),'description' =>$request->get('description'),'status' =>$request->get('status'),'user_id'=>Auth::user()->id]);  
+	 Brand::create(['image' =>$fileName,'brand_name' =>$request->get('name'),'description' =>$request->get('description'),'is_delete'=>'0','status' =>$request->get('status'),'user_id'=>Auth::user()->id]);  
 		  
          return redirect('/admin/brand')->withFlash_message('Record inserted Successfully.');
 	   
 	}
         public function delete(Request $request){
 	
-	   $chk_id=$request->get('del_id');	  
-	   DB::table('brands')->where('id', '=',$chk_id)->delete();		 
+	   $chk_id=$request->get('del_id');
+           $brand = Brand::find($chk_id);
+           $brand->is_delete = '1';
+           $brand->save(); 	  		 
            return  redirect('/admin/brand')->withFlash_message('Record Deleted Successfully.');	 
 	    
 	}

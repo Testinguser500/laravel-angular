@@ -4,16 +4,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Brand extends Model
+class Newsletter extends Model
 {
-    protected $table = 'brands';
+    protected $table = 'newsletters';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'brand_name', 'description','status','user_id','image','is_delete'
+        'name', 'email','mob_no','occupation','city','gender','subscribe'
     ];
 
    

@@ -363,15 +363,10 @@
           </a>
           
         </li>
-        <li>
-          <a href="pages/widgets.html">
-            <i class="fa fa-th"></i> <span>Widgets</span>
-            <small class="label pull-right bg-green">new</small>
-          </a>
-        </li>
+       
         <li>
           <a href="{{url('/admin/category')}}">
-            <i class="fa fa-th"></i> <span>Category</span>
+            <i class="fa fa-fw fa-cubes"></i> <span>Category</span>
            
           </a>
         </li>
@@ -379,6 +374,18 @@
           <a href="{{url('/admin/brand')}}">
             <i class="fa fa-th"></i> <span>Brand</span>
            
+          </a>
+        </li>
+         <li>
+          <a href="{{url('/admin/newsletter')}}">
+            <i class="glyphicon glyphicon-open"></i> <span>Newsletter</span>
+           
+          </a>
+        </li>
+         <li>
+          <a href="pages/widgets.html">
+            <i class="fa fa-th"></i> <span>Widgets</span>
+            <small class="label pull-right bg-green">new</small>
           </a>
         </li>
         <li class="treeview">

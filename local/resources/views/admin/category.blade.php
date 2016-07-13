@@ -92,4 +92,11 @@
     </section>
    
   <!-- /.content-wrapper -->
+  <script>
+    $(function () {
+    $("#example1").DataTable();
+    
+   
+  });
+ </script>
 @endsection	

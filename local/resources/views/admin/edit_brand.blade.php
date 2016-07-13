@@ -41,8 +41,7 @@
                   <input type="file"  name="image">
 		  <div class="help-block"></div>
                 </div> 
-                  
-                  <div class="form-group">
+                <div class="form-group">
                   <label for="exampleInputEmail1">Status </label>
                   <input type="radio"  id="" name="status" value="Active"  @if($brand->status=='Active') checked @endif >Active <input type="radio" id="" name="status" value="Inactive" @if($brand->status=='Inactive') checked @endif >Inactive 
 		  <div class="help-block"></div>
