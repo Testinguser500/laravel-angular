@@ -16,7 +16,7 @@
           <div class="box">
             <div class="box-header">
               <h3 class="box-title"><i class="fa fa-list"></i> Category List</h3>
-              <div class="pull-right"> <a href="{{ url('admin/category/add')}}" class="btn btn-primary"><i class="fa fa-plus"></i>Add</a></div>
+              <div class="pull-right"> <a href="{{ url('admin/category/add')}}" class="btn btn-primary"><i class="fa fa-plus"></i> Add</a></div>
             </div>
             <!-- /.box-header -->
             
