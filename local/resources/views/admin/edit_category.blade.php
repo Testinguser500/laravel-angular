@@ -12,8 +12,9 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action="{{url('/admin/category/edit')}}" method="post" enctype= "multipart/form-data">
+            <form role="form" action="{{url('/admin/category/update')}}" method="post" enctype= "multipart/form-data">
                  {{ csrf_field() }}
+                  <input type="hidden" class="form-control" id="" name="category_id" placeholder="Name" value="{{$categ->id}}">
               <div class="box-body">
 			 
                 <div class="form-group">
