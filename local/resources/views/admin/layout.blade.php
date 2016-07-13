@@ -382,6 +382,12 @@
            
           </a>
         </li>
+        <li>
+          <a href="{{url('/admin/config')}}">
+            <i class="fa fa-cogs"></i> <span>Configuration</span>
+           
+          </a>
+        </li>
          <li>
           <a href="pages/widgets.html">
             <i class="fa fa-th"></i> <span>Widgets</span>

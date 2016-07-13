@@ -46,6 +46,10 @@ Route::get('admin/newsletter', 'Admin\NewsletterController@index');
 Route::post('admin/newsletter/delete', 'Admin\NewsletterController@delete');
 Route::post('admin/newsletter/update', 'Admin\NewsletterController@update');
 
+Route::get('admin/config', 'Admin\ConfigController@index');
+Route::get('admin/config/edit', 'Admin\ConfigController@edit');
+Route::post('admin/config/update', 'Admin\ConfigController@update');
+
 Route::get('admin/user', 'Admin\UserController@index');
 Route::get('admin/user/add', 'Admin\UserController@add');
 Route::post('admin/user/store', 'Admin\UserController@store');
