@@ -43,3 +43,10 @@ Route::post('admin/brand/update', 'Admin\BrandController@update');
 Route::get('admin/user', 'Admin\UserController@index');
 Route::get('admin/user/add', 'Admin\UserController@add');
 Route::post('admin/user/store', 'Admin\UserController@store');
+Route::get('admin/user/edit/{id}', 'Admin\UserController@edit');
+Route::post('admin/user/update', 'Admin\UserController@update');
+Route::post('admin/user/delete', 'Admin\UserController@delete');
+
+Route::get('admin/static-content', 'Admin\StaticContentController@index');
+Route::get('admin/static-content/edit/{id}', 'Admin\StaticContentController@edit');
+Route::post('admin/static-content/update', 'Admin\StaticContentController@update');

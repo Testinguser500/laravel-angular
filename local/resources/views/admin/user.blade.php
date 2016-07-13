@@ -3,6 +3,14 @@
 
     <!-- Main content -->
     <section class="content">
+	@if(Session::has('flash_message'))
+		<div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4><i class="icon fa fa-check"></i> Success!</h4>
+                {{ Session::get('flash_message') }}
+              </div>
+     
+   @endif
        <div class="col-md-12">
 	     
           <!-- /.box -->
@@ -10,7 +18,7 @@
           <div class="box">
             <div class="box-header">
               <h3 class="box-title"><i class="fa fa-list"></i> User List</h3>
-			  <a class="add-link btn btn-success btn-flat btn-grid" href=""><i class="fa fa-plus-square"></i> Add User</a>
+			  <a class="add-link btn btn-success btn-flat btn-grid" href="user/add"><i class="fa fa-plus-square"></i> Add User</a>
             </div>
             <!-- /.box-header -->
             
@@ -30,7 +38,7 @@
                   <td>{{ $val->id }}</td>
                   <td>{{ $val->name }}</td>
                   <td>{{ $val->email }}</td>
-                  <td><i class="fa fa-edit" style="cursor:pointer" data-toggle="modal" data-target="#edit_modal{{ $val->id }};  ?>"></i> <i class="fa fa-trash" style="cursor:pointer" data-toggle="modal" data-target="#del_modal{{ $val->id }}"></i>
+                  <td><a href="user/edit/{{ $val->id }}"><i class="fa fa-edit" style="cursor:pointer"></i></a> <i class="fa fa-trash" style="cursor:pointer" data-toggle="modal" data-target="#del_modal{{ $val->id }}"></i>
                  
                   <!-- Modal -->
                     <div class="modal fade" id="del_modal{{  $val->id  }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

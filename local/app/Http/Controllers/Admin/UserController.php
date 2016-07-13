@@ -65,33 +65,43 @@ class UserController extends Controller
         
 	 public function edit($id){
 	
-	 $cate= DB::table('categorys')->where('id', '=',$id)->first();  
-         $category = DB::table('categorys')->get();  
-	 return view('admin/edit_category')->with('categories',$category)->with('categ',$cate)->with('title','Category')->with('subtitle','Edit');
+	 $data= DB::table('users')->where('id', '=',$id)->first();  
+         $user = DB::table('users')->get();  
+	 return view('admin/edit_user')->with('user_data',$user)->with('data',$data)->with('title','User')->with('subtitle','Edit');
 	     
 	}
          public function update(Request $request){
 	
 	  $validator = Validator::make($request->all(), [
             'name' => 'required',
-	    
-            'description'=>'required',            
+			'email'=>'required|email',            
             
         ]);
          
         if ($validator->fails()) {
-            return redirect('/category')
+            return redirect('/admin/user/edit/'.$request->get('user_id'))
                         ->withErrors($validator)
                         ->withInput();
         }
 		 
-         $destinationPath = 'uploads'; // upload path
+          if(Input::file('image')!=''){	 
+         $destinationPath = 'uploads/users/'; // upload path
          $extension = Input::file('image')->getClientOriginalExtension(); // getting image extension
          $fileName = rand(11111,99999).'.'.$extension; // renameing image
          Input::file('image')->move($destinationPath, $fileName); // uploading file to given path
-	 Category::create(['image' =>$fileName,'category_name' =>$request->get('name'),'description' =>$request->get('description'),'status' =>$request->get('status'),'parent_id'=>$request->get('parent_cat'),'user_id'=>Auth::user()->id]);  
+         }
+         $cat = User::find($request->get('user_id'));
+         $cat->name = $request->get('name');
+         if((isset($fileName)) && ($fileName!='')){
+			$cat->image = $fileName;
+         }
+		 $cat->address =$request->get('address');
+		 $cat->email=$request->get('email');
+		 $cat->gender=$request->get('gender');
+         $cat->status=$request->get('status');
+         $cat->save(); 
 		  
-         return redirect('/admin/category')->withFlash_message('Record inserted Successfully.');
+         return redirect('/admin/user')->withFlash_message('Record updated Successfully.');
 	     
 	}
        
