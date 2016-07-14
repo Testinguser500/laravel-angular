@@ -37,9 +37,9 @@
                   <td>{{ $val->name }}</td>
                   <td>@if($val->subscribe=='1') Subscribe @else Unsubscribe @endif</td>
                   <td>
-                  <i class="fa fa-eye" style="cursor:pointer" data-toggle="modal" data-target="#view_modal{{ $val->id }}"></i>
-                  <i class="fa fa-edit" style="cursor:pointer" data-toggle="modal" data-target="#edit_modal{{ $val->id }}"></i>  
-                  <i class="fa fa-trash" style="cursor:pointer" data-toggle="modal" data-target="#del_modal{{ $val->id }}"></i>
+                  <i title="View" class="fa fa-eye" style="cursor:pointer" data-toggle="modal" data-target="#view_modal{{ $val->id }}"></i>
+                  <i title="Edit"  class="fa fa-edit" style="cursor:pointer" data-toggle="modal" data-target="#edit_modal{{ $val->id }}"></i>  
+                  <i title="Delete" class="fa fa-trash" style="cursor:pointer" data-toggle="modal" data-target="#del_modal{{ $val->id }}"></i>
                   <!-- Modal -->
                     <div class="modal fade" id="view_modal{{  $val->id  }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                       <div class="modal-dialog" role="document">

@@ -36,7 +36,7 @@
                   <td>{{ $val->id }}</td>
                   <td>{{ $val->brand_name }}</td>
                   <td>{{ $val->status }}</td>
-                  <td><a href="{{url('/admin/brand/edit') }}/{{ $val->id }}"><i class="fa fa-edit" ></a></i> <i class="fa fa-trash" style="cursor:pointer" data-toggle="modal" data-target="#del_modal{{ $val->id }}"></i>
+                  <td><a href="{{url('/admin/brand/edit') }}/{{ $val->id }}"><i class="fa fa-edit" title="Edit" ></i></a> <i title="Delete" class="fa fa-trash" style="cursor:pointer" data-toggle="modal" data-target="#del_modal{{ $val->id }}"></i>
                  
                   <!-- Modal -->
                     <div class="modal fade" id="del_modal{{  $val->id  }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

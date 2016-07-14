@@ -16,7 +16,8 @@
           <!-- general form elements -->
           <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title"><i class="fa fa-edit"></i> Edit Category</h3>
+                <h3 class="box-title"><i class="fa fa-edit"></i> Edit Brand</h3>
+                 <div class="pull-right"> <a href="{{ url('admin/brand')}}" class="btn btn-default">Back</a></div>
             </div>
             <!-- /.box-header -->
             <!-- form start -->

@@ -18,6 +18,7 @@
           <div class="box box-primary">
             <div class="box-header with-border">
                 <h3 class="box-title"><i class="fa fa-plus"></i> Create Brand</h3>
+                <div class="pull-right"> <a href="{{ url('admin/brand')}}" class="btn btn-default">Back</a></div>
             </div>
             <!-- /.box-header -->
             <!-- form start -->

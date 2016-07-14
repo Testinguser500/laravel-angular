@@ -389,6 +389,12 @@
           </a>
         </li>
          <li>
+          <a href="{{url('/admin/enquiry')}}">
+            <i class="fa fa-envelope"></i> <span>Enquiry</span>
+           
+          </a>
+        </li>
+         <li>
           <a href="pages/widgets.html">
             <i class="fa fa-th"></i> <span>Widgets</span>
             <small class="label pull-right bg-green">new</small>
