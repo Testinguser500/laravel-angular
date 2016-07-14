@@ -42,6 +42,13 @@ Route::post('admin/brand/delete', 'Admin\BrandController@delete');
 Route::get('admin/brand/edit/{id}', 'Admin\BrandController@edit');
 Route::post('admin/brand/update', 'Admin\BrandController@update');
 
+Route::get('admin/faq', 'Admin\FaqController@index');
+Route::get('admin/faq/add', 'Admin\FaqController@add');
+Route::post('admin/faq/store', 'Admin\FaqController@store');
+Route::post('admin/faq/delete', 'Admin\FaqController@delete');
+Route::get('admin/faq/edit/{id}', 'Admin\FaqController@edit');
+Route::post('admin/faq/update', 'Admin\FaqController@update');
+
 Route::get('admin/newsletter', 'Admin\NewsletterController@index');
 Route::post('admin/newsletter/delete', 'Admin\NewsletterController@delete');
 Route::post('admin/newsletter/update', 'Admin\NewsletterController@update');
