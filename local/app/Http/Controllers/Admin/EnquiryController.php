@@ -2,6 +2,7 @@
 use App\User; 
 use App\Enquiry; 
 use DB;
+use Mail;
 use Illuminate\Support\Facades\Input;
 use Auth;
 use Illuminate\Http\Request;
@@ -52,7 +53,14 @@ class EnquiryController extends Controller
                         ->withErrors($validator)
                         ->withInput();
         }
-         Enquiry::create(['name' =>$request->get('name'),'email' =>$request->get('email'),'subject' =>$request->get('subject'),'message'=>$request->get('reply'),'reply_to' =>$request->get('reply_to')]);
+        $emails['subject']=$request->get('subject');
+        $msg=$request->get('reply');
+        Mail::send('email',  ['msg' => $msg], function ($message) use ($emails) {
+            $message->from('test@infoseeksoftwaresystems.com', 'Laravel');
+
+            $message->to('srishti.infoseek@gmail.com')->subject($emails['subject']);
+        });
+        Enquiry::create(['name' =>$request->get('name'),'email' =>$request->get('email'),'subject' =>$request->get('subject'),'message'=>$request->get('reply'),'reply_to' =>$request->get('reply_to')]);
 
 		  
          return redirect('/admin/enquiry')->withFlash_message('Reply send successfully.');
