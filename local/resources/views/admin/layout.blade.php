@@ -29,9 +29,15 @@
   <link rel="stylesheet" href="{{URL::asset('admin/daterangepicker/daterangepicker-bs3.css')}}">
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="{{URL::asset('admin/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="{{URL::asset('admin/datatables/dataTables.bootstrap.css')}}">
 
 <!-- jQuery 2.2.0 -->
 <script src="{{URL::asset('admin/js/jQuery-2.2.0.min.js')}}"></script>
+
+<!-- DataTables -->
+<script src="{{URL::asset('admin/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{URL::asset('admin/datatables/dataTables.bootstrap.min.js')}}"></script>
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -294,7 +300,7 @@
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="{{ URL('admin/log_out') }}" class="btn btn-default btn-flat">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -357,6 +363,7 @@
           </a>
           
         </li>
+<<<<<<< HEAD
         <li class="treeview">
           <a href="{{url('admin/banner/')}}">
             <i class="fa fa-picture-o"></i>
@@ -364,8 +371,34 @@
             
           </a>
           
+=======
+       
+        <li>
+          <a href="{{url('/admin/category')}}">
+            <i class="fa fa-fw fa-cubes"></i> <span>Category</span>
+           
+          </a>
+        </li>
+         <li>
+          <a href="{{url('/admin/brand')}}">
+            <i class="fa fa-th"></i> <span>Brand</span>
+           
+          </a>
+        </li>
+         <li>
+          <a href="{{url('/admin/newsletter')}}">
+            <i class="glyphicon glyphicon-open"></i> <span>Newsletter</span>
+           
+          </a>
+>>>>>>> c03c19cf06ea0c45807acbb4421ebb4579a298ec
         </li>
         <li>
+          <a href="{{url('/admin/config')}}">
+            <i class="fa fa-cogs"></i> <span>Configuration</span>
+           
+          </a>
+        </li>
+         <li>
           <a href="pages/widgets.html">
             <i class="fa fa-th"></i> <span>Widgets</span>
             <small class="label pull-right bg-green">new</small>

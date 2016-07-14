@@ -2,9 +2,9 @@
 
 namespace App;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
-class Category extends Authenticatable
+class Category extends Model
 {
     protected $table = 'categorys';
     /**
@@ -13,7 +13,7 @@ class Category extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'category_name', 'parent_id', 'description','status','user_id','image'
+        'category_name', 'parent_id', 'description','status','user_id','image','is_delete'
     ];
 
    

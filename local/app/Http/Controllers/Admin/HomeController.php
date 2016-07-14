@@ -47,10 +47,15 @@ class HomeController extends Controller
                          }
                     }else
                     {
-                    return redirect('admin/login')->with('flash_notice', 'Your E-mail or Password is not correct')->withInput();
+                    return redirect('admin/login')->withFlash_message('Your E-mail or Password is not correct')->withInput();
                     }
 		  }
 	}
+        public function log_out()
+        {
+            Auth::logout();
+             return redirect('admin/login')->withFlash_message('You have successfully logout.')->withInput();
+        }
        
  }
  

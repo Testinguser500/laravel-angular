@@ -4,11 +4,20 @@
     <!-- Main content -->
     <section class="content">
        <div class="col-md-12">
-	     <?php // echo $this->session->flashdata('succ_msg'); ?>
+	  @if (count($errors) > 0)
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
           <!-- general form elements -->
           <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title"><i class="fa fa-plus"></i>Create Category</h3>
+                <h3 class="box-title"><i class="fa fa-plus"></i> Create Category</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
@@ -18,12 +27,14 @@
 			 
                 <div class="form-group">
                   <label for="exampleInputEmail1">Name</label>
-                  <input type="text" class="form-control" id="" name="name" placeholder="Name">
+                  <input type="text" class="form-control" id="" name="name" placeholder="Name" value="{{ old('name') }}">
 		  <div class="help-block"></div>
                 </div> 
                 <div class="form-group">
                   <label for="exampleInputEmail1">Description</label>
-                  <textarea name="description" class="textarea" placeholder="Description" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>  
+                  <textarea name="description" class="textarea" placeholder="Description" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">
+                      {{ old('description') }}
+                  </textarea>  
 		  <div class="help-block"></div>
                 </div> 
                 <div class="form-group">

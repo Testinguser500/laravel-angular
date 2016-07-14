@@ -4,11 +4,19 @@
     <!-- Main content -->
     <section class="content">
        <div class="col-md-12">
-	     <?php // echo $this->session->flashdata('succ_msg'); ?>
+	 @if (count($errors) > 0)
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
           <!-- general form elements -->
           <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title"><i class="fa fa-plus"></i>Edit Category</h3>
+                <h3 class="box-title"><i class="fa fa-edit"></i> Edit Category</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->

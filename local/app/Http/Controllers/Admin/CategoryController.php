@@ -17,13 +17,13 @@ class CategoryController extends Controller
 
         }
 	public function index(){ 
-             $category = DB::table('categorys')->get();  
+             $category = DB::table('categorys')->where('is_delete', '=','0')->get();  
              return view('admin/category')->with('categories',$category)->with('title','Category')->with('subtitle','List');
 		
 	}
        public function add(){ 
              
-             $category = DB::table('categorys')->get();  
+             $category = DB::table('categorys')->where('is_delete', '=','0')->get();  
              return view('admin/add_category')->with('categories',$category)->with('title','Category')->with('subtitle','Add');	
 	}
         public function store(Request $request){
@@ -46,15 +46,17 @@ class CategoryController extends Controller
          $extension = Input::file('image')->getClientOriginalExtension(); // getting image extension
          $fileName = rand(11111,99999).'.'.$extension; // renameing image
          Input::file('image')->move($destinationPath, $fileName); // uploading file to given path
-	 Category::create(['image' =>$fileName,'category_name' =>$request->get('name'),'description' =>$request->get('description'),'status' =>$request->get('status'),'parent_id'=>$request->get('parent_cat'),'user_id'=>Auth::user()->id]);  
+	 Category::create(['image' =>$fileName,'category_name' =>$request->get('name'),'description' =>$request->get('description'),'status' =>$request->get('status'),'parent_id'=>$request->get('parent_cat'),'is_delete'=>'0','user_id'=>Auth::user()->id]);  
 		  
          return redirect('/admin/category')->withFlash_message('Record inserted Successfully.');
 	   
 	}
         public function delete(Request $request){
 	
-	   $chk_id=$request->get('del_id');	  
-	   DB::table('Categorys')->where('id', '=',$chk_id)->delete();		 
+	   $chk_id=$request->get('del_id');	
+           $cat = Category::find($chk_id);
+           $cat->is_delete = '1';
+           $cat->save(); 	   		 
            return  redirect('/admin/category')->withFlash_message('Record Deleted  Successfully.');	 
 	    
 	}
@@ -62,7 +64,7 @@ class CategoryController extends Controller
 	 public function edit($id){
 	
 	 $cate= DB::table('categorys')->where('id', '=',$id)->first();  
-         $category = DB::table('categorys')->get();  
+         $category = DB::table('categorys')->where('is_delete', '=','0')->get();  
 	 return view('admin/edit_category')->with('categories',$category)->with('categ',$cate)->with('title','Category')->with('subtitle','Edit');
 	     
 	}
