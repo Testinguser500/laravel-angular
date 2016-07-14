@@ -28,7 +28,7 @@
                 <div class="form-group">
                   <label for="exampleInputEmail1">Title</label>
                   <input type="text" class="form-control" id="" name="banner_id" value="{{ $banner->id }}">
-                  <input type="text" class="form-control" id="" name="title" placeholder="Title" value="{{ $banner->title }}">
+                  <input type="text" class="form-control" id="" name="title" placeholder="Title" value="{{ old('title')?old('title'):$banner->title }}">
 		  <div class="help-block"></div>
                 </div> 
                 <div class="form-group">
@@ -37,7 +37,8 @@
                       <option value="">Select Banner Type</option>
                       <?php foreach((array)bannerType() as $key=>$val)
                       {?>
-                      <option value="<?php echo $key;?>" @if($banner->position_id==$key) selected @endif><?php echo $val['position'];?></option>
+                      
+                      <option value="<?php echo $key;?>" @if((old('position_id')?old('position_id'):$banner->position_id)==$key) selected @endif><?php echo $val['position'];?></option>
                       <?php }?>
                   </select>
 		  <div class="help-block"></div>
@@ -45,7 +46,7 @@
 				
 				<div class="form-group">
                   <label for="exampleInputEmail1">URL</label>
-                  <input type="text" class="form-control" id="" name="url" value="{{$banner->url}}">
+                  <input type="text" class="form-control" id="" name="url" value="{{old('url')?old('url'):$banner->url}}">
 				  
 		  <div class="help-block"></div>
                 </div>
@@ -63,8 +64,8 @@
                   
                   <div class="form-group">
                   <label for="exampleInputEmail1">Status </label>
-                  <input type="radio"  id="" name="status" value="Active" @if($banner->status=='Active') checked @endif>Active
-                         <input type="radio" id="" name="status" value="Inactive" @if($banner->status=='Inactive') checked @endif>Inactive 
+                  <input type="radio"  id="" name="status" value="Active" @if((old('status')?old('status'):$banner->status)=='Active') checked @endif>Active
+                         <input type="radio" id="" name="status" value="Inactive" @if((old('status')?old('status'):$banner->status)=='Inactive') checked @endif>Inactive 
 		  <div class="help-block"></div>
                 </div> 
              </div>
