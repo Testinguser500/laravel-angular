@@ -17,50 +17,55 @@
           <!-- general form elements -->
           <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title"><i class="fa fa-plus"></i>Edit User</h3>
+                <h3 class="box-title"><i class="fa fa-plus"></i>Edit Banner</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form" action="{{url('/admin/user/update')}}" method="post" enctype= "multipart/form-data">
+            <form role="form" action="{{url('/admin/banner/update')}}" method="post" enctype= "multipart/form-data">
                  {{ csrf_field() }}
               <div class="box-body">
 			 
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Name</label>
-				  <input type="hidden" class="form-control" id="" name="user_id" value="{{$data->id}}">
-                  <input type="text" class="form-control" id="" name="name" placeholder="Name" value="{{$data->name}}">
+                  <label for="exampleInputEmail1">Title</label>
+                  <input type="text" class="form-control" id="" name="banner_id" value="{{ $banner->id }}">
+                  <input type="text" class="form-control" id="" name="title" placeholder="Title" value="{{ old('title')?old('title'):$banner->title }}">
 		  <div class="help-block"></div>
                 </div> 
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Email</label>
-                  <input type="text" class="form-control" id="" name="email" placeholder="Email" value="{{ $data->email }}">
+                  <label for="exampleInputEmail1">Banner Type</label>
+                  <select class="form-control" id="" name="position_id" >
+                      <option value="">Select Banner Type</option>
+                      <?php foreach((array)bannerType() as $key=>$val)
+                      {?>
+                      
+                      <option value="<?php echo $key;?>" @if((old('position_id')?old('position_id'):$banner->position_id)==$key) selected @endif><?php echo $val['position'];?></option>
+                      <?php }?>
+                  </select>
 		  <div class="help-block"></div>
                 </div>
 				
 				<div class="form-group">
-                  <label for="exampleInputEmail1">Gender</label>
-                  <select class="form-control" id="" name="gender">
-				  <option value="male" @if( $data->gender=='male')  selected  @endif>Male</option>
-				  <option value="female" @if( $data->gender=='female')  selected  @endif>Female</option>
-				  </select>
+                  <label for="exampleInputEmail1">URL</label>
+                  <input type="text" class="form-control" id="" name="url" value="{{old('url')?old('url'):$banner->url}}">
+				  
 		  <div class="help-block"></div>
                 </div>
-
-				<div class="form-group">
-                  <label for="exampleInputEmail1">Address</label>
-                  <textarea class="form-control" id="" name="address" >{{ $data->address }}</textarea>
+		<div class="form-group">
+                  <label for="exampleInputEmail1">Current Image</label>
+                  <img class='' src="{{URL::asset('uploads/banner/')}}/thumb_{{$banner->image}}" width="100">
+                  <input type="hidden"  name="old_image" value="{{$banner->image}}">
 		  <div class="help-block"></div>
-                </div> 
+                </div>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Image</label>
-                  <img class='' src="{{URL::asset('uploads/user/')}}/{{$data->image}}" width="100">
                   <input type="file"  name="image">
 		  <div class="help-block"></div>
                 </div> 
                   
                   <div class="form-group">
                   <label for="exampleInputEmail1">Status </label>
-                  <input type="radio"  id="" name="status" value="Active"  @if($data->status=='Active') checked @endif >Active <input type="radio" id="" name="status" value="Inactive" @if($data->status=='Inactive') checked @endif >Inactive 
+                  <input type="radio"  id="" name="status" value="Active" @if((old('status')?old('status'):$banner->status)=='Active') checked @endif>Active
+                         <input type="radio" id="" name="status" value="Inactive" @if((old('status')?old('status'):$banner->status)=='Inactive') checked @endif>Inactive 
 		  <div class="help-block"></div>
                 </div> 
              </div>
@@ -99,5 +104,4 @@
     $(".textarea").wysihtml5();
   });
 </script>
-@endsection
-
+@endsection	

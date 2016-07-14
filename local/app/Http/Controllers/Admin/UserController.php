@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Validator;
 use Session;
+use Hash;
+use Crypt;
+use Mail;
 
 class UserController extends Controller
 {      
@@ -33,7 +36,7 @@ class UserController extends Controller
   
 	   $validator = Validator::make($request->all(), [
             'name' => 'required',
-			'email'=>'required|email',
+			'email'=>'required|email|unique:users',
 			
 	    'image'=>'required',
                        
@@ -46,11 +49,11 @@ class UserController extends Controller
                         ->withInput();
         }
 		 
-         $destinationPath = 'uploads/user/'; // upload path
-         $extension = Input::file('image')->getClientOriginalExtension(); // getting image extension
-         $fileName = rand(11111,99999).'.'.$extension; // renameing image
-         Input::file('image')->move($destinationPath, $fileName); // uploading file to given path
-		User::create(['image' =>$fileName,'name' =>$request->get('name'),'email' =>$request->get('email'),'gender'=>$request->get('gender'),'address'=>$request->get('address'),'status' =>$request->get('status'),'role'=>2]);  
+        $destinationPath = 'uploads/user/'; // upload path
+        $extension = Input::file('image')->getClientOriginalExtension(); // getting image extension
+        $fileName = rand(11111,99999).'.'.$extension; // renameing image
+        Input::file('image')->move($destinationPath, $fileName); // uploading file to given path
+        User::create(['image' =>$fileName,'name' =>$request->get('name'),'email' =>$request->get('email'),'password'=>bcrypt(str_random(6)),'gender'=>$request->get('gender'),'address'=>$request->get('address'),'status' =>$request->get('status'),'role'=>2]);  
 		  
          return redirect('/admin/user')->withFlash_message('Record inserted Successfully.');
 	   
@@ -104,6 +107,17 @@ class UserController extends Controller
          return redirect('/admin/user')->withFlash_message('Record updated Successfully.');
 	     
 	}
+        
+         public function sendEmailReminder(Request $request)
+    {
+        $user = User::findOrFail($request->get('user_id'));
+
+        Mail::send('emails.reminder', ['user' => $user], function ($m) use ($user) {
+            $m->from('hello@app.com', 'Your Application');
+
+            $m->to($user->email, $user->name)->subject('Your Reminder!');
+        });
+    }
        
  }
  
