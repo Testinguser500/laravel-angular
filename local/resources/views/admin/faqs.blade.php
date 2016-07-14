@@ -16,7 +16,7 @@
           <div class="box">
             <div class="box-header">
               <h3 class="box-title"><i class="fa fa-list"></i> Faq List</h3>
-              <div class="pull-right"> <a href="{{ url('admin/category/add')}}" class="btn btn-primary"><i class="fa fa-plus"></i> Add</a></div>
+              <div class="pull-right"> <a href="{{ url('admin/faq/add')}}" class="btn btn-primary"><i class="fa fa-plus"></i> Add</a></div>
             </div>
             <!-- /.box-header -->
             
@@ -34,9 +34,9 @@
                 <?php foreach($faqs as $val){ ?>
                 <tr>
                   <td>{{ $val->id }}</td>
-                  <td>{{ $val->category_name }}</td>
+                  <td>{{ $val->quest }}</td>
                   <td>{{ $val->status }}</td>
-                  <td><a href="{{url('/admin/category/edit') }}/{{ $val->id }}"><i class="fa fa-edit" title="Edit" ></i> </a><i class="fa fa-trash" title ="Delete" style="cursor:pointer" data-toggle="modal" data-target="#del_modal{{ $val->id }}"></i>
+                  <td><a href="{{url('/admin/faq/edit') }}/{{ $val->id }}"><i class="fa fa-edit" title="Edit" ></i> </a><i class="fa fa-trash" title ="Delete" style="cursor:pointer" data-toggle="modal" data-target="#del_modal{{ $val->id }}"></i>
                  
                   <!-- Modal -->
                     <div class="modal fade" id="del_modal{{  $val->id  }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -47,11 +47,11 @@
                             <h4 class="modal-title" id="myModalLabel">Delete</h4>
                           </div>
                           <div class="modal-body">
-                            Are you sure you want to delete this category ? 
+                            Are you sure you want to delete this faq question ? 
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                            <form action = "{{url('/admin/category/delete')}}" method="post">
+                            <form action = "{{url('/admin/faq/delete')}}" method="post">
                                   {{ csrf_field() }}
                                <input type="hidden" name="del_id" value="{{  $val->id  }}" />
                                <button type="submit" class="btn btn-primary" >Delete</button>

@@ -21,83 +21,66 @@ class FaqController extends Controller
              return view('admin/faqs')->with('faqs',$faqs)->with('title','Faq')->with('subtitle','List');
 		
 	}
-       public function add(){ 
+       public function add(){              
              
-             $category = DB::table('categorys')->where('is_delete', '=','0')->get();  
-             return view('admin/add_category')->with('categories',$category)->with('title','Category')->with('subtitle','Add');	
+             return view('admin/add_faq')->with('title','Faq')->with('subtitle','Add Questions Answer');	
 	}
         public function store(Request $request){
 	
   
 	   $validator = Validator::make($request->all(), [
-            'name' => 'required',
-	    'image'=>'required',
-            'description'=>'required',            
+            'question' => 'required',
+	    'answer'=>'required',                    
             
         ]);
          
         if ($validator->fails()) {
-            return redirect('/admin/category/add')
+            return redirect('/admin/faq/add')
                         ->withErrors($validator)
                         ->withInput();
         }
-		 
-         $destinationPath = 'uploads'; // upload path
-         $extension = Input::file('image')->getClientOriginalExtension(); // getting image extension
-         $fileName = rand(11111,99999).'.'.$extension; // renameing image
-         Input::file('image')->move($destinationPath, $fileName); // uploading file to given path
-	 Category::create(['image' =>$fileName,'category_name' =>$request->get('name'),'description' =>$request->get('description'),'status' =>$request->get('status'),'parent_id'=>$request->get('parent_cat'),'is_delete'=>'0','user_id'=>Auth::user()->id]);  
+	       
+	 Faq::create(['quest' =>$request->get('question'),'ans' =>$request->get('answer'),'status' =>$request->get('status')]);  
 		  
-         return redirect('/admin/category')->withFlash_message('Record inserted Successfully.');
+         return redirect('/admin/faq')->withFlash_message('Record inserted Successfully.');
 	   
 	}
         public function delete(Request $request){
 	
 	   $chk_id=$request->get('del_id');	
-           $cat = Category::find($chk_id);
-           $cat->is_delete = '1';
-           $cat->save(); 	   		 
-           return  redirect('/admin/category')->withFlash_message('Record Deleted  Successfully.');	 
+           DB::table('faqs')->where('id', '=',$chk_id)->delete();    		 
+           return  redirect('/admin/faq')->withFlash_message('Record Deleted Successfully.');	 
 	    
 	}
         
 	 public function edit($id){
 	
-	 $cate= DB::table('categorys')->where('id', '=',$id)->first();  
-         $category = DB::table('categorys')->where('is_delete', '=','0')->get();  
-	 return view('admin/edit_category')->with('categories',$category)->with('categ',$cate)->with('title','Category')->with('subtitle','Edit');
+	 $faq= DB::table('faqs')->where('id', '=',$id)->first();  
+         
+	 return view('admin/edit_faq')->with('faq',$faq)->with('title','Faq')->with('subtitle','Edit Questions Answer');
 	     
 	}
          public function update(Request $request){
 	
 	  $validator = Validator::make($request->all(), [
-            'name' => 'required',	    
-            'description'=>'required',        
+            'question' => 'required',
+	    'answer'=>'required',        
             
         ]);
          
         if ($validator->fails()) {
-            return redirect('/admin/category/edit/'.$request->get('category_id'))
+            return redirect('/admin/faq/edit/'.$request->get('faq_id'))
                         ->withErrors($validator)
                         ->withInput();
         }
-	 if(Input::file('image')!=''){	 
-         $destinationPath = 'uploads'; // upload path
-         $extension = Input::file('image')->getClientOriginalExtension(); // getting image extension
-         $fileName = rand(11111,99999).'.'.$extension; // renameing image
-         Input::file('image')->move($destinationPath, $fileName); // uploading file to given path
-         }
-         $cat = Category::find($request->get('category_id'));
-         $cat->category_name = $request->get('name');
-         if((isset($fileName)) && ($fileName!='')){
-	 $cat->image = $fileName;
-         }
-	 $cat->description =$request->get('description');
-	 $cat->parent_id=$request->get('parent_cat');
-         $cat->status=$request->get('status');
-         $cat->save(); 
+	
+         $faq = Faq::find($request->get('faq_id'));
+         $faq->quest = $request->get('question');
+         $faq->ans =$request->get('answer');
+	 $faq->status=$request->get('status');
+         $faq->save(); 
 		  
-         return redirect('/admin/category')->withFlash_message('Record updated Successfully.');
+         return redirect('/admin/faq')->withFlash_message('Record updated Successfully.');
 	     
 	}
        
