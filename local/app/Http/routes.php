@@ -43,3 +43,9 @@ Route::post('admin/user/delete', 'Admin\UserController@delete');
 Route::get('admin/static-content', 'Admin\StaticContentController@index');
 Route::get('admin/static-content/edit/{id}', 'Admin\StaticContentController@edit');
 Route::post('admin/static-content/update', 'Admin\StaticContentController@update');
+
+Route::get('admin/banner', 'Admin\BannerController@index');
+Route::get('admin/banner/add', 'Admin\BannerController@add');
+Route::post('admin/banner/store', 'Admin\BannerController@store');
+Route::get('admin/banner/edit/{id}', 'Admin\BannerController@edit');
+Route::post('admin/banner/update', 'Admin\BannerController@update');

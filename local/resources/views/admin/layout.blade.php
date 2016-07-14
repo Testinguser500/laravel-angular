@@ -357,6 +357,14 @@
           </a>
           
         </li>
+        <li class="treeview">
+          <a href="{{url('admin/banner/')}}">
+            <i class="fa fa-picture-o"></i>
+            <span>Banner Management</span>
+            
+          </a>
+          
+        </li>
         <li>
           <a href="pages/widgets.html">
             <i class="fa fa-th"></i> <span>Widgets</span>
