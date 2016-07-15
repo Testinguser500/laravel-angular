@@ -87,3 +87,9 @@ Route::get('admin/banner/add', 'Admin\BannerController@add');
 Route::post('admin/banner/store', 'Admin\BannerController@store');
 Route::get('admin/banner/edit/{id}', 'Admin\BannerController@edit');
 Route::post('admin/banner/update', 'Admin\BannerController@update');
+
+Route::get('admin/seller', 'Admin\SellerController@index');
+Route::get('admin/seller/add', 'Admin\SellerController@add');
+Route::post('admin/seller/store', 'Admin\SellerController@store');
+Route::get('admin/seller/edit/{id}', 'Admin\SellerController@edit');
+Route::post('admin/seller/update', 'Admin\SellerController@update');

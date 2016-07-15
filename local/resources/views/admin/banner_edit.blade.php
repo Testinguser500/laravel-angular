@@ -27,7 +27,7 @@
 			 
                 <div class="form-group">
                   <label for="exampleInputEmail1">Title</label>
-                  <input type="text" class="form-control" id="" name="banner_id" value="{{ $banner->id }}">
+                  <input type="hidden" class="form-control" id="" name="banner_id" value="{{ $banner->id }}">
                   <input type="text" class="form-control" id="" name="title" placeholder="Title" value="{{ old('title')?old('title'):$banner->title }}">
 		  <div class="help-block"></div>
                 </div> 
