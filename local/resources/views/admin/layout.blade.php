@@ -84,7 +84,7 @@
                   <li><!-- start message -->
                     <a href="#">
                       <div class="pull-left">
-                        <img src="{{URL::asset('admin/img')}}/user2-160x160.jpg" class="img-circle" alt="User Image">
+<!--                        <img src="{{URL::asset('admin/img')}}/user2-160x160.jpg" class="img-circle" alt="User Image">-->
                       </div>
                       <h4>
                         Support Team
@@ -97,7 +97,7 @@
                   <li>
                     <a href="#">
                       <div class="pull-left">
-                        <img src="{{URL::asset('admin/img')}}/user3-128x128.jpg" class="img-circle" alt="User Image">
+<!--                        <img src="{{URL::asset('admin/img')}}/user3-128x128.jpg" class="img-circle" alt="User Image">-->
                       </div>
                       <h4>
                         AdminLTE Design Team
@@ -266,13 +266,13 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="{{URL::asset('admin/img')}}/user2-160x160.jpg" class="user-image" alt="User Image">
+<!--              <img src="{{URL::asset('admin/img')}}/user2-160x160.jpg" class="user-image" alt="User Image">-->
               <span class="hidden-xs">{{Auth::user()->name }}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="{{URL::asset('admin/img')}}/user2-160x160.jpg" class="img-circle" alt="User Image">
+<!--                <img src="{{URL::asset('admin/img')}}/user2-160x160.jpg" class="img-circle" alt="User Image">-->
 
                 <p>
                   {{Auth::user()->name }}
@@ -363,15 +363,14 @@
           </a>
           
         </li>
-<<<<<<< HEAD
+
         <li class="treeview">
           <a href="{{url('admin/banner/')}}">
             <i class="fa fa-picture-o"></i>
             <span>Banner Management</span>
             
           </a>
-          
-=======
+ 
        
         <li>
           <a href="{{url('/admin/category')}}">
@@ -390,7 +389,7 @@
             <i class="glyphicon glyphicon-open"></i> <span>Newsletter</span>
            
           </a>
->>>>>>> c03c19cf06ea0c45807acbb4421ebb4579a298ec
+
         </li>
         <li>
           <a href="{{url('/admin/config')}}">
@@ -537,9 +536,7 @@
    <!-- /.content -->
   </div>
   <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-      <b>Version</b> 2.3.3
-    </div>
+    
    {{ configs_value('Copyright') }}
        </footer>
 
