@@ -65,4 +65,30 @@ function configs_value($key)
   $configs= DB::table('configs')->where('key', '=',$key)->first(); 
   return $configs->value;
 }
+function email_section($id)
+{
+  $email_msgs= DB::table('email_msgs')->where('id', '=',$id)->first(); 
+  return $email_msgs;
+}
+function getSelectedmenu($IN='',$NOTIN='')
+{
+   
+    $menu_1=  array();
+    if($IN)
+    {
+        
+        $menu= DB::table('menu')->whereIn('menu_id',$IN)->get();
+         	
+//DB::enableQueryLog();
+//dd(DB::getQueryLog());
+
+        return $menu;
+    }
+    elseif ($NOTIN) {
+        
+    $menu= DB::table('menu')->whereNotIn('menu_id',$NOTIN)->get();
+     return $menu;
+    }
+   
+}
 ?>
