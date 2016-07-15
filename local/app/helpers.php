@@ -59,7 +59,15 @@ function imageUpload($file,$folder,$thumb=array(),$mid=array(),$oldImage)
 		return $fileName;
 	}
 }
-
+function getMenu($pid='')
+{
+    if(!$pid)
+    {
+        $pid = 0;
+    }
+    $menu= DB::table('menu')->where('pid', '=',$pid)->get(); 
+    return $menu;
+}
 function configs_value($key)
 {
   $configs= DB::table('configs')->where('key', '=',$key)->first(); 
