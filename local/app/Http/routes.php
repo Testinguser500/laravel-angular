@@ -53,6 +53,15 @@ Route::get('admin/newsletter', 'Admin\NewsletterController@index');
 Route::post('admin/newsletter/delete', 'Admin\NewsletterController@delete');
 Route::post('admin/newsletter/update', 'Admin\NewsletterController@update');
 
+Route::get('admin/template', 'Admin\TemplateController@index');
+Route::get('admin/template/add', 'Admin\TemplateController@add');
+Route::post('admin/template/store', 'Admin\TemplateController@store');
+Route::post('admin/template/delete', 'Admin\TemplateController@delete');
+Route::get('admin/template/edit/{id}', 'Admin\TemplateController@edit');
+Route::post('admin/template/update', 'Admin\TemplateController@update');
+Route::get('admin/template/send/{id}', 'Admin\TemplateController@send');
+Route::post('admin/template/sent', 'Admin\TemplateController@sent');
+
 Route::get('admin/config', 'Admin\ConfigController@index');
 Route::get('admin/config/edit', 'Admin\ConfigController@edit');
 Route::post('admin/config/update', 'Admin\ConfigController@update');
